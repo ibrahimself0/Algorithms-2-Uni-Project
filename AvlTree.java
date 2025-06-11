@@ -20,7 +20,6 @@ public class AvlTree {
 
     public boolean insert(Product product, String name,float price,int available,int id ){
         if (currentStorage >= maxStorage) return false;
-        if (product == null) return false;
         if (searchHelper(root,product.id) == null){
             root = insertHelper(root,new Product(name,price,available,id));
             currentStorage++;
@@ -38,8 +37,8 @@ public class AvlTree {
         else{
             current.right=insertHelper(current.right, newProduct);
         }
-        update(newProduct);
-        return balance(newProduct);
+        update(current);
+        return balance(current);
     }
 
     public void update(Product product){
@@ -103,5 +102,22 @@ public class AvlTree {
         update(newParent);
         return newParent;
     }
+    public void setPrice(int id,float price){
+        if (price>=0) {
+            searchHelper(root, id).price=price;
+        }else{
+            System.out.println("wrong price");
+        }
+
+    }
+
+    public void setAvailable(int id,int available){
+        if (available>=0) {
+            searchHelper(root, id).available=available;
+        }else{
+            System.out.println("wrong available");
+        }
+    }
+
 
 }
