@@ -1,8 +1,10 @@
 public class Product {
 
+    static int staticId=0;
+    int id; 
     String name;
     float price;
-    int id,available;
+    int available;
     Product left,right;
 
     //Avl Attributes
@@ -10,6 +12,7 @@ public class Product {
     int height;
 
     public Product(String name , float price, int available){
+        this.id=staticId++; 
         this.available=available; 
         this.price=price; 
         this.name=name;

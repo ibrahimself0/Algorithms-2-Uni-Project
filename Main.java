@@ -11,10 +11,10 @@ public class Main {
         ShipmentTree shipmentTree = new ShipmentTree();
         Heap heap = new Heap(15,0);
 
-        bst.insert(new Product("Dell XPS 15", 1299.99f, 25));
-        bst.insert(new Product("iPhone 14", 999.00f, 50));
-        bst.insert(new Product("Sony WH-1000XM4", 349.99f, 30));
-        bst.insert(new Product("Logitech MX Keys", 99.95f, 15));
+        bst.insert("Dell XPS 15", 1299.99f, 25);
+        bst.insert("iPhone 14", 999.00f, 50);
+        bst.insert("Sony WH-1000XM4", 349.99f, 30);
+        bst.insert("Logitech MX Keys", 99.95f, 15);
 
         avlTree.insert(new Product("Dell XPS 15", 1299.99f, 25));
         avlTree.insert(new Product("iPhone 14", 999.00f, 50));
@@ -73,7 +73,7 @@ public class Main {
                             String name = in.next();
                             float price = in.nextFloat();
                             int stock = in.nextInt();
-                            bst.insert(new Product(name, price, stock));
+                            bst.insert(name, price, stock);
                         }
                         case 2 -> {
                             System.out.println("Enter ID:");
@@ -89,7 +89,7 @@ public class Main {
                         }
                         case 5 -> {
                             System.out.println("Enter ID:");
-                            System.out.println(bst.deleteHelper(in.nextInt()));
+                            System.out.println(bst.delete(in.nextInt()));
                         }
                     }
                 }
