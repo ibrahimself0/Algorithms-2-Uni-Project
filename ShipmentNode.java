@@ -5,14 +5,14 @@ public class ShipmentNode {
     String destination;
     double cost;
     String deliveryDate;
-    ArrayList<Product> Products = new ArrayList<>();
+    ArrayList<Product> Products ;
     ShipmentNode left, right;
 
-    public ShipmentNode(int id, String destination, double cost, String deliveryDate) {
-        this.id = id;
+    public ShipmentNode(String destination, double cost, String deliveryDate,ArrayList<Product> Products ) {
         this.destination = destination;
         this.cost = cost;
         this.deliveryDate = deliveryDate;
         left = right = null;
+        this.Products = Products;
     }
 }

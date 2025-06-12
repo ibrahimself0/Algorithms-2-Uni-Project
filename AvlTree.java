@@ -3,38 +3,34 @@ public class AvlTree {
     static public int staticID = 0;
     int maxStorage=1000,currentStorage = 0;
 
-    public String search(int id){
-        Product res = searchHelper(root,id);
-        if (res == null){
-            return "Product not  found";
-        }
-        return res.toString();
+    public Product search(int id){
+         return searchHelper(root,id);
     }
     public Product searchHelper(Product product,int id){
         if (product == null || product.id == id ) return product;
-        if (product.id<id){
+        if (id<product.id){
             return searchHelper(product.left,id);
         }else{
             return searchHelper(product.right,id);
         }
     }
 
-    public boolean insert(String name,float price,int available){
-        if (currentStorage + available>= maxStorage) return false;
-        if (searchHelper(root,id) == null){
-            currentStorage+= available;
-            id = staticID;
-            staticID++;
-            root = insertHelper(root,new Product(name,price,available,id));
-            return true;
-        }
-        return false;
+    public boolean insert(Product product){
+        if (currentStorage + product.available > maxStorage) return false;
+        currentStorage+= product.available;
+        product.id = staticID;
+        staticID++;
+        root = insertHelper(root,product);
+        return true;
+
+
     }
     public Product insertHelper(Product current , Product newProduct){
         if (current==null) {
             return newProduct;
         }
-        if (newProduct.id<current.id) {
+        if (newProduct.id == current.id) return current;
+        if (newProduct.id < current.id) {
             current.left=insertHelper(current.left,newProduct);
         }
         else{
@@ -120,6 +116,16 @@ public class AvlTree {
         }else{
             System.out.println("wrong available");
         }
+    }
+    public void printTree() {
+        printTreeHelper(root);
+    }
+
+    private void printTreeHelper(Product node) {
+        if (node == null) return;
+        printTreeHelper(node.right);
+        System.out.println(node);
+        printTreeHelper(node.left);
     }
 
 

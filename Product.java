@@ -12,21 +12,12 @@ public class Product {
     public Product(String name , float price, int available){
         this.available=available; 
         this.price=price; 
-        this.name=name; 
-        this.id=id; 
-        
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-    public void setAvailable(int available) {
-        this.available = available;
+        this.name=name;
     }
 
     @Override
     public String toString() {
-        return "Products [name=" + name + ", price=" + price + ", id=" + id + ", available=" + available +"]";
+        return "[name=" + name + ", price=" + price + ", id=" + id + ", available=" + available +"]";
     }
 
     

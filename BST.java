@@ -19,6 +19,8 @@ class BST {
         if (current==null) {
             return newProduct;
         }
+        if (newProduct.id == current.id) return current;
+
         if (newProduct.id<current.id) {
             current.left=insertHelper(current.left,newProduct);
         }
@@ -33,7 +35,7 @@ class BST {
         Product res = searchHelper(node, id);
         if(res == null){
             return "not found";
-        };
+        }
         return "product found : "+res.toString();
     }
 
@@ -66,11 +68,12 @@ class BST {
         }
     }
     public String deleteHelper(int id){
-        Product res = searchHelper(node, id);
-        if(res == null){
-            return "not found";
-        };
-        return " Got Deleted" ;
+            if (searchHelper(node, id) == null) {
+                return "Not found";
+            }
+            node = delete(node, id);
+            return "Got Deleted";
+
     }
     public Product delete(Product node, int id) {
         if (node == null) {
@@ -109,13 +112,18 @@ class BST {
         }
         return node;
     }
+    public void printTree() {
+        printTreeHelper(node);
+    }
 
+    private void printTreeHelper(Product node) {
+        if (node == null) {
 
-
-
-
-
-
-
+            return;
+        }
+        printTreeHelper(node.right);
+        System.out.println(node);
+        printTreeHelper(node.left);
+    }
 
 }

@@ -1,0 +1,197 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
+public class Main{
+    public static void main(String[] args){
+        Product laptopBST = new Product("Dell XPS 15", 1299.99f, 25);
+        Product smartphoneBST = new Product("iPhone 14", 999.00f, 50);
+        Product headphonesBST = new Product("Sony WH-1000XM4", 349.99f, 30);
+        Product keyboardBST = new Product("Logitech MX Keys", 99.95f, 15);
+
+        BST bst = new BST();
+        bst.insert(laptopBST);
+        bst.insert(smartphoneBST);
+        bst.insert(headphonesBST);
+        bst.insert(keyboardBST);
+
+        Product laptopAVL = new Product("Dell XPS 15", 1299.99f, 25);
+        Product smartphoneAVL = new Product("iPhone 14", 999.00f, 50);
+        Product headphonesAVL = new Product("Sony WH-1000XM4", 349.99f, 30);
+        Product keyboardAVL = new Product("Logitech MX Keys", 99.95f, 15);
+
+        AvlTree avlTree = new AvlTree();
+        avlTree.insert(laptopAVL);
+        avlTree.insert(smartphoneAVL);
+        avlTree.insert(headphonesAVL);
+        avlTree.insert(keyboardAVL);
+
+        bst.printTree();
+        avlTree.printTree();
+
+
+
+        ShipmentTree shipmentTree = new ShipmentTree();
+        System.out.println("1: Managing Products Using BST");
+        System.out.println("2: Managing Products Using AVL");
+        System.out.println("3: Managing Shipments Using BST");
+        System.out.println("4: Managing Orders Using Heaps");
+        System.out.println("5: Quit");
+        Scanner in = new Scanner(System.in);
+        int x  = in.nextInt();
+        int y;
+        while (x != 5){
+            switch (x){
+                case 1:
+                    System.out.println("1:Adding a New Product");
+                    System.out.println("2:Searching for a Product Using ID");
+                    System.out.println("3:Updating Stock ");
+                    System.out.println("4:Updating Price" );
+                    System.out.println("5:Deleting a Product");
+                    y = in.nextInt();
+                    switch (y){
+                        case 1:
+                            System.out.println("Enter The Name Of The Product : ");
+                            String name = in.next();
+                            System.out.println("Enter The Price Of The Product : ");
+                            float price1 = in.nextFloat();
+                            System.out.println("Enter The Stock Of The Product : ");
+                            int stock1 = in.nextInt();
+                            Product product = new Product(name,price1,stock1);
+                            bst.insert(product);
+                            break;
+                        case 2:
+                            System.out.println("Enter The ID : ");
+                            int id1 = in.nextInt();
+                            System.out.println(bst.search(id1));
+                            break;
+                        case 3:
+                            System.out.println("Enter The ID : ");
+                            int id2 = in.nextInt();
+                            System.out.println("Enter New Stock : ");
+                            int stock2 = in.nextInt();
+                            bst.setAvailable(id2,stock2);
+                            break;
+                        case 4:
+                            System.out.println("Enter The ID : ");
+                            int id3 = in.nextInt();
+                            System.out.println("Enter New Price : ");
+                            float price2 = in.nextFloat();
+                            bst.setPrice(id3,price2);
+                            break;
+                        case 5:
+                            System.out.println("Enter The ID : ");
+                            int id4 = in.nextInt();
+                            System.out.println(bst.deleteHelper(id4));
+                            break;
+                    }
+                break;
+
+                case 2:
+                    System.out.println("1:Adding a New Product");
+                    System.out.println("2:Searching for a Product Using ID");
+                    System.out.println("3:Updating Stock ");
+                    System.out.println("4:Updating Price" );
+                    y = in.nextInt();
+                    switch (y) {
+                        case 1:
+                            System.out.println("Enter The Name Of The Product : ");
+                            String name = in.next();
+                            System.out.println("Enter The Price Of The Product : ");
+                            float price1 = in.nextFloat();
+                            System.out.println("Enter The Stock Of The Product : ");
+                            int stock1 = in.nextInt();
+                            Product product = new Product(name, price1, stock1);
+                            avlTree.insert(product);
+                            break;
+                        case 2:
+                            System.out.println("Enter The ID : ");
+                            int id1 = in.nextInt();
+                            System.out.println(avlTree.search(id1));
+                            break;
+                        case 3:
+                            System.out.println("Enter The ID : ");
+                            int id2 = in.nextInt();
+                            System.out.println("Enter New Stock : ");
+                            int stock2 = in.nextInt();
+                            avlTree.setAvailable(id2, stock2);
+                            break;
+                        case 4:
+                            System.out.println("Enter The ID : ");
+                            int id3 = in.nextInt();
+                            System.out.println("Enter New Price : ");
+                            float price2 = in.nextFloat();
+                            avlTree.setPrice(id3, price2);
+                            break;
+                    }
+
+                    break;
+
+                case 3:
+                    System.out.println("1:Adding a New Shipment");
+                    System.out.println("2:Searching for a Shipment Using ID");
+                    System.out.println("3:Updating the Shipment Date");
+                    y = in.nextInt();
+                    switch (y){
+                        case 1:
+                            ArrayList<Product> products = new ArrayList<>();
+                            System.out.println("How many products you want to add");
+                            int numOfProducts = in.nextInt();
+                            avlTree.printTree();
+                            System.out.println("Enter the Id and the quantity of the product");
+
+                            for (int i = 0; i < numOfProducts; i++) {
+                                int id = in.nextInt();
+                                int quantity = in.nextInt();
+                                Product product =avlTree.search(id);
+                                if (product != null){
+                                    if (product.available < quantity){
+                                        System.out.println("Not enough in Stock");
+                                    }else{
+                                        product.setAvailable(product.available-quantity);
+                                    }
+                                }else{
+                                    System.out.println("Wrong id");
+                                }
+                                products.add(avlTree.search(in.nextInt()));
+                            }
+                            System.out.println("Enter the Destination :");
+                            String destination = in.next();
+                            System.out.println("Enter the cost :");
+                            double cost = in.nextDouble();
+                            System.out.println("Delivery date:");
+                            String date1 = in.next();
+                            ShipmentNode shipmentNode = new ShipmentNode(destination,cost,date1,products);
+                            shipmentTree.addShipment(shipmentNode);
+
+                            break;
+                        case 2:
+                            System.out.println("Enter the id");
+                            int id2 = in.nextInt();
+                            System.out.println(shipmentTree.searchShipment(id2));
+                            break;
+                        case 3:
+                            System.out.println("Enter The ID : ");
+                            int id1 = in.nextInt();
+                            System.out.println("Enter the new Date: ");
+                            String date2 = in.next();
+                            shipmentTree.setDate(id1,date2);
+                            break;
+
+
+                    }
+                    break;
+
+                default:
+                    System.out.println("1: Managing Products Using BST");
+                    System.out.println("2: Managing Products Using AVL");
+                    System.out.println("3: Managing Shipments Using BST");
+                    System.out.println("4: Managing Orders Using Heaps");
+                    System.out.println("5: Quit");
+                    x = in.nextInt();
+                    break;
+
+
+            }
+        }
+    }
+}

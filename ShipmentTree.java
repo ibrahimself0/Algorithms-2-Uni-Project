@@ -1,23 +1,34 @@
-import java.util.ArrayList;
-
 public class ShipmentTree {
     ShipmentNode root;
     static int staticID = 0;
-
-    public void addShipment(int id, String destination, double cost, String deliveryDate, ArrayList<Product> products) {
-        root = insert(root, id, destination, cost, deliveryDate);
+    public void addShipment(ShipmentNode shipmentNode) {
+        shipmentNode.id = staticID;
+        staticID++;
+        root = insert(root,shipmentNode);
     }
 
-    private ShipmentNode insert(ShipmentNode node, int id, String destination, double cost, String deliveryDate) {
-        if (node == null) return new ShipmentNode(id, destination, cost, deliveryDate);
-        if (id < node.id) node.left = insert(node.left, id, destination, cost, deliveryDate);
-        else if (id > node.id) node.right = insert(node.right, id, destination, cost, deliveryDate);
-        return node;
+    public ShipmentNode insert(ShipmentNode current , ShipmentNode newShipment){
+        if (current==null) {
+            return newShipment;
+        }
+        if (newShipment.id == current.id) return current;
+
+        if (newShipment.id<current.id) {
+            current.left=insert(current.left,newShipment);
+        }
+        else{
+            current.right=insert(current.right, newShipment);
+        }
+        return current;
     }
 
 
-    public ShipmentNode searchShipment(int id) {
-        return search(root, id);
+    public String searchShipment(int id) {
+        ShipmentNode res = search(root, id) ;
+        if(res == null){
+            return "Not Found";
+        }
+        return res.toString();
     }
 
     private ShipmentNode search(ShipmentNode node, int id) {
@@ -26,14 +37,8 @@ public class ShipmentTree {
     }
 
 
-    public void updateDeliveryDate(int id, String newDate) {
-        ShipmentNode node = searchShipment(id);
-        if (node != null) {
-            node.deliveryDate = newDate;
-            System.out.println("the date has been updated  " + id);
-        } else {
-            System.out.println("shipment is not available.");
-        }
+    public void setDate(int id,String date){
+            search(root, id).deliveryDate = date;
     }
 
 
