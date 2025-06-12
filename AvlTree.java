@@ -1,5 +1,6 @@
 public class AvlTree {
     Product root;
+    static public int staticID = 0;
     int maxStorage=1000,currentStorage = 0;
 
     public String search(int id){
@@ -18,11 +19,13 @@ public class AvlTree {
         }
     }
 
-    public boolean insert(Product product, String name,float price,int available,int id ){
-        if (currentStorage >= maxStorage) return false;
-        if (searchHelper(root,product.id) == null){
+    public boolean insert(String name,float price,int available){
+        if (currentStorage + available>= maxStorage) return false;
+        if (searchHelper(root,id) == null){
+            currentStorage+= available;
+            id = staticID;
+            staticID++;
             root = insertHelper(root,new Product(name,price,available,id));
-            currentStorage++;
             return true;
         }
         return false;

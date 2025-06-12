@@ -9,7 +9,7 @@ public class Product {
     int bf;
     int height;
 
-    public Product(String name , float price, int available, int id){
+    public Product(String name , float price, int available){
         this.available=available; 
         this.price=price; 
         this.name=name; 
