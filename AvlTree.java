@@ -4,7 +4,7 @@ public class AvlTree {
     int maxStorage=1000,currentStorage = 0;
 
     public Product search(int id){
-         return searchHelper(root,id);
+        return searchHelper(root,id);
     }
     public Product searchHelper(Product product,int id){
         if (product == null || product.id == id ) return product;

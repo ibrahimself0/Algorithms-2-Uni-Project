@@ -24,23 +24,24 @@ public class Heap {
     public int parent(int i){
         return (i-1)/2;
     }
+
     public void heapify(int i){
+        int largest = i;
         int l = left(i);
         int r = right(i);
-        int largest;
         if (l<this.size && this.orders.get(l).priority > this.orders.get(i).priority){
+            System.out.println("largest = l");
             largest = l;
-        }else{
-            largest = i;
         }
         if (r<this.size && this.orders.get(r).priority > this.orders.get(largest).priority){
+            System.out.println("largest = r");
             largest = r;
         }
         if (largest != i){
             Order temp = this.orders.get(largest);
             this.orders.set(largest,this.orders.get(i));
             this.orders.set(i,temp);
-            heapify(largest);
+            heapify(parent(i));
         }
     }
     public Order extractMax(){

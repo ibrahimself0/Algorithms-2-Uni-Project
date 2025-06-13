@@ -1,26 +1,26 @@
 class BST {
-    static int staticID = 0;
 
-    int maxStorage=1000,currentStorage=0;
+    static int maxStorage=1000,currentStorage=0;
     Product node;
 
-    public void insert(Product newProduct){
-        if (currentStorage+newProduct.available<=maxStorage) {
-            newProduct.id = staticID;
-            staticID++;
-            currentStorage += newProduct.available;
-            node=insertHelper(node, newProduct);
+    public void insert(String name,float price,int available){
+        if (currentStorage+available<=maxStorage && price>0) {
+            currentStorage+=available;
+
+            node=insertHelper(node, new Product(name, price, available));
+            this.printTree();
+        }else if (currentStorage+available>maxStorage) {
+
+            System.out.println("sorry...there is no enough storage");
         }else{
-            System.out.println("sorry there is no enough storage");
+            System.out.println("sorry...wrong price ");
         }
 
     }
-    public Product insertHelper(Product current , Product newProduct){
+    public Product insertHelper(Product current ,Product newProduct){
         if (current==null) {
             return newProduct;
         }
-        if (newProduct.id == current.id) return current;
-
         if (newProduct.id<current.id) {
             current.left=insertHelper(current.left,newProduct);
         }
@@ -32,11 +32,10 @@ class BST {
 
 
     public String search(int id){
-        Product res = searchHelper(node, id);
-        if(res == null){
+        if(searchHelper(node, id)==null){
             return "not found";
-        }
-        return "product found : "+res.toString();
+        };
+        return searchHelper(node, id).toString();
     }
 
     public Product searchHelper(Product node, int id) {
@@ -67,23 +66,24 @@ class BST {
             System.out.println("wrong available");
         }
     }
-    public String deleteHelper(int id){
-            if (searchHelper(node, id) == null) {
-                return "Not found";
-            }
-            node = delete(node, id);
-            return "Got Deleted";
+
+    public String delete(int id){
+        if (searchHelper(node, id) == null) {
+            return "Not found";
+        }
+        node = deleteHelper(node, id);
+        return "Got Deleted";
 
     }
-    public Product delete(Product node, int id) {
+    public Product deleteHelper(Product node, int id) {
         if (node == null) {
             return null;
         }
 
         if (id < node.id) {
-            node.left = delete(node.left, id);
+            node.left = deleteHelper(node.left, id);
         } else if (id > node.id) {
-            node.right = delete(node.right, id);
+            node.right = deleteHelper(node.right, id);
         } else {
             if (node.left == null && node.right == null) {
                 return null;
@@ -100,11 +100,12 @@ class BST {
             node.name = temp.name;
             node.price = temp.price;
             node.available = temp.available;
-            node.right = delete(node.right, temp.id);
+            node.right = deleteHelper(node.right, temp.id);
         }
 
         return node;
     }
+
 
     private Product hasSons(Product node) {
         while (node.left != null) {
@@ -112,6 +113,7 @@ class BST {
         }
         return node;
     }
+
     public void printTree() {
         printTreeHelper(node);
     }
@@ -125,5 +127,13 @@ class BST {
         System.out.println(node);
         printTreeHelper(node.left);
     }
+
+
+
+
+
+
+
+
 
 }
