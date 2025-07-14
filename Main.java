@@ -18,9 +18,7 @@ public class Main {
         bst.insert("iPhone 14", 999.00f, 50);
         bst.insert("Sony WH-1000XM4", 349.99f, 30);
         bst.insert("Logitech MX Keys", 99.95f, 15);
-
-       shipmentTree.addShipment(new ShipmentNode("damscause", 5, "2025/8/8", null));
-
+        
         avlTree.insert(new Product("Dell XPS 15", 1299.99f, 25));
         avlTree.insert(new Product("iPhone 14", 999.00f, 50));
         avlTree.insert(new Product("Sony WH-1000XM4", 349.99f, 30));
