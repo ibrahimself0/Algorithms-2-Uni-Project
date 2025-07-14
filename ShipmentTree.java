@@ -1,6 +1,8 @@
 public class ShipmentTree {
+    
     ShipmentNode root;
     static int staticID = 0;
+
     public void addShipment(ShipmentNode shipmentNode) {
         shipmentNode.id = staticID;
         staticID++;

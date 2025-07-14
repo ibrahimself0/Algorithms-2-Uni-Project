@@ -1,3 +1,4 @@
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -17,6 +18,8 @@ public class Main {
         bst.insert("iPhone 14", 999.00f, 50);
         bst.insert("Sony WH-1000XM4", 349.99f, 30);
         bst.insert("Logitech MX Keys", 99.95f, 15);
+
+       shipmentTree.addShipment(new ShipmentNode("damscause", 5, "2025/8/8", null));
 
         avlTree.insert(new Product("Dell XPS 15", 1299.99f, 25));
         avlTree.insert(new Product("iPhone 14", 999.00f, 50));
@@ -57,7 +60,8 @@ public class Main {
             System.out.println("2: Managing Products Using AVL");
             System.out.println("3: Managing Shipments Using BST");
             System.out.println("4: Managing Orders Using Heaps");
-            System.out.println("5: Quit");
+            System.out.println("5:doing the additional order ");
+            System.out.println("6: Quit");
             x = in.nextInt();
 
             switch (x) {
@@ -229,16 +233,43 @@ public class Main {
                             heap.printPriority();
 
                         }
+                        
 
                     }
+                    
 
                 }
+                case 5->{
+                    Reports reports=new Reports(shipmentTree, bst); 
+                    System.out.println("1:for inventory cost ");
+                    System.out.println("2:for high cost shipments");
+                    System.out.println("3:for cost of shipments ");
+                    int report=in.nextInt(); 
+                    switch (report) {
+                        case 1:{
+                            reports.checkInventoryCost();
+                        }break; 
+                        case 2:{
+                            System.out.println("enter the date ");
+                            String stringDate=in.nextLine(); 
+                            stringDate=in.nextLine(); 
+                            LocalDate date=DateChecking.getLocalDate(stringDate); 
+                            System.out.println("enter what the high cost you want ");
+                            double cost=in.nextInt(); 
+                            reports.checkShipmentsCoast(cost, date);
+                        }break; 
+                        case 3:{
+                            reports.checkOrdersCost();
+                        }
+                        default:
+                            break;
+                    }
+                }
+                
+                
             }
-        } while (x != 5);
-             
 
-
-
+        } while (x != 6);
 }
 
 }
