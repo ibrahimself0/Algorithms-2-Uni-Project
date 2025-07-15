@@ -29,7 +29,7 @@ public class Reports {
     }
 
     //to check high shipments cost 
-    public void checkShipmentsCoast(double cost,LocalDate date ){
+    public void checkShipmentsCost(double cost,LocalDate date ){
             checkShipmentsCostHelper(shipmentTree.root, cost,date);
     }
     public void checkShipmentsCostHelper(ShipmentNode shipmentNode,double cost,LocalDate date){

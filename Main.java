@@ -254,7 +254,7 @@ public class Main {
                             LocalDate date=DateChecking.getLocalDate(stringDate); 
                             System.out.println("enter what the high cost you want ");
                             double cost=in.nextInt(); 
-                            reports.checkShipmentsCoast(cost, date);
+                            reports.checkShipmentsCost(cost, date);
                         }break; 
                         case 3:{
                             reports.checkOrdersCost();
