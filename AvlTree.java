@@ -122,8 +122,18 @@ public class AvlTree {
     }
 
     public void setAvailable(int id,int available){
+        Product product=searchHelper(root, id);
         if (available>=0) {
-            searchHelper(root, id).available=available;
+            if (available==product.available) {
+                System.out.println("its the same available");
+                return; 
+            }
+            else if (available<product.available) {
+               currentStorage-=product.available-available; 
+            }else{
+                currentStorage+=available-product.available; 
+            }
+           product.available=available;
         }else{
             System.out.println("wrong available");
         }
