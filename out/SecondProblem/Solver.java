@@ -56,58 +56,58 @@ public class Solver {
         }
 
         return ans;
-    }
-
-    private void dfsDesert(boolean[][] visited, int i, int j) {
-
-        visited[i][j] = true;
-
-        for (int[] current : moves) {
-
-            int ci = i + current[0];
-            int cj = j + current[1];
-
-            if (canBeVisited(ci, cj, visited) && grid[ci][cj] > grid[i][j]
-                    &&  !Extras.contains(new Pair<>(ci, cj))) 
-                dfsDesert(visited, ci, cj);
         }
 
-        // if(i+1 < n && !visited[i+1][j] && a[i+1][j] > a[i][j] && !Extras.contains(new
-        // Pair<>(i+1 , j)) )
-        // dfsDesert(visited , i+1, j);
+        private void dfsDesert(boolean[][] visited, int i, int j) {
 
-        // if(i-1 >= 0 && !visited[i-1][j] && a[i-1][j] > a[i][j] && !Extras.contains(new Pair<>(i -1, j)))
-        // dfsDesert(visited , i-1, j);
+            visited[i][j] = true;
 
-        // if(j+1 < m && !visited[i][j+1] && a[i][j+1] > a[i][j] && !Extras.contains(new
-        // Pair<>(i , j+1)))
-        // dfsDesert(visited , i, j+1);
+            for (int[] current : moves) {
 
-        // if(j-1 >= 0 && !visited[i][j-1] && a[i][j-1] >a[i][j] && !Extras.contains(new
-        // Pair<>(i , j-1)))
-        // dfsDesert(visited , i, j-1);
+                int ci = i + current[0];
+                int cj = j + current[1];
+
+                if (canBeVisited(ci, cj, visited) && grid[ci][cj] > grid[i][j]
+                        &&  !Extras.contains(new Pair<>(ci, cj))) 
+                    dfsDesert(visited, ci, cj);
+            }
+
+            // if(i+1 < n && !visited[i+1][j] && a[i+1][j] > a[i][j] && !Extras.contains(new
+            // Pair<>(i+1 , j)) )
+            // dfsDesert(visited , i+1, j);
+
+            // if(i-1 >= 0 && !visited[i-1][j] && a[i-1][j] > a[i][j] && !Extras.contains(new Pair<>(i -1, j)))
+            // dfsDesert(visited , i-1, j);
+
+            // if(j+1 < m && !visited[i][j+1] && a[i][j+1] > a[i][j] && !Extras.contains(new
+            // Pair<>(i , j+1)))
+            // dfsDesert(visited , i, j+1);
+
+            // if(j-1 >= 0 && !visited[i][j-1] && a[i][j-1] >a[i][j] && !Extras.contains(new
+            // Pair<>(i , j-1)))
+            // dfsDesert(visited , i, j-1);
+            
+        }
+
+        private void dfsRiver(boolean[][] visited, int i, int j) {
+            visited[i][j] = true;
         
-    }
-
-    private void dfsRiver(boolean[][] visited, int i, int j) {
-        visited[i][j] = true;
-    
-        for (int[] move : moves) {
-            int ci = i + move[0];
-            int cj = j + move[1];
-    
-            if (canBeVisited(ci, cj, visited)) {
-                boolean isRiver = Extras.contains(new Pair<>(ci, cj));
-    
-                if ((isRiver && grid[ci][cj] >= grid[i][j]) || (!isRiver && grid[ci][cj] > grid[i][j])) {
-                    dfsRiver(visited, ci, cj); 
+            for (int[] move : moves) {
+                int ci = i + move[0];
+                int cj = j + move[1];
+        
+                if (canBeVisited(ci, cj, visited)) {
+                    boolean isRiver = Extras.contains(new Pair<>(ci, cj));
+        
+                    if ((isRiver && grid[ci][cj] >= grid[i][j]) || (!isRiver && grid[ci][cj] > grid[i][j])) {
+                        dfsRiver(visited, ci, cj); 
+                    }
                 }
             }
         }
-    }
 
-    public boolean canBeVisited(int ci , int cj , boolean[][] visited){
-        return ci >= 0 && ci < n && cj >= 0 && cj < m && !visited[ci][cj];
+        public boolean canBeVisited(int ci , int cj , boolean[][] visited){
+            return ci >= 0 && ci < n && cj >= 0 && cj < m && !visited[ci][cj];
+        }
+        
     }
-    
-}
