@@ -41,8 +41,19 @@ public class AvlTree {
     }
 
     public void update(Product product){
-        int leftNodeHeight = (product.left == null) ? -1 : product.left.height;
-        int rightNodeHeight = (product.right == null) ? -1 : product.right.height;
+        int leftNodeHeight;
+         if (product.left == null) {
+           leftNodeHeight = -1;
+        } else {
+           leftNodeHeight = product.left.height;
+        }
+
+        int rightNodeHeight;
+        if (product.right == null) {
+          rightNodeHeight = -1;
+        } else {
+          rightNodeHeight = product.right.height;
+        }
         //Without +1, heights don’t increase up the tree
         product.height = 1 + Math.max(leftNodeHeight, rightNodeHeight);
 

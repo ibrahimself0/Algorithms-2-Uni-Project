@@ -14,5 +14,17 @@ public class ShipmentNode {
         this.deliveryDate = deliveryDate;
         left = right = null;
         this.Products = Products;
+    }
+
+    //for reports....ali
+
+    @Override
+    public String toString() {
+        return "ShipmentNode [id=" + id + ", destination=" + destination + ", cost=" + cost + ", deliveryDate="
+                + deliveryDate;
     } 
+   
+
+   
+    
 }

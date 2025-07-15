@@ -118,7 +118,7 @@ class BST {
         printTreeHelper(node);
     }
 
-    private void printTreeHelper(Product node) {
+     void printTreeHelper(Product node) {
         if (node == null) {
 
             return;
