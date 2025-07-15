@@ -81,6 +81,11 @@ public class Main {
                                 String name = in.next();
                                 float price = in.nextFloat();
                                 int stock = in.nextInt();
+                                if(price<0){
+                                    System.out.println("wrong price ");
+                                }else if(stock<0){
+                                    System.out.println("wrong stock");
+                                }
                                 bst.insert(name, price, stock);
                             }
                             case 2 -> {
@@ -114,6 +119,11 @@ public class Main {
                                 String name = in.next();
                                 float price = in.nextFloat();
                                 int stock = in.nextInt();
+                                if(price<0){
+                                    System.out.println("wrong price ");
+                                }else if(stock<0){
+                                    System.out.println("wrong stock");
+                                }
                                 avlTree.insert(new Product(name, price, stock));
                             }
                             case 2 -> {
