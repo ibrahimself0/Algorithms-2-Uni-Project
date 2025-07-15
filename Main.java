@@ -83,8 +83,10 @@ public class Main {
                                 int stock = in.nextInt();
                                 if(price<0){
                                     System.out.println("wrong price ");
+                                    continue; 
                                 }else if(stock<0){
                                     System.out.println("wrong stock");
+                                    continue; 
                                 }
                                 bst.insert(name, price, stock);
                             }
@@ -121,8 +123,10 @@ public class Main {
                                 int stock = in.nextInt();
                                 if(price<0){
                                     System.out.println("wrong price ");
+                                    continue; 
                                 }else if(stock<0){
                                     System.out.println("wrong stock");
+                                    continue; 
                                 }
                                 avlTree.insert(new Product(name, price, stock));
                             }
