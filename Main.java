@@ -58,7 +58,7 @@ public class Main {
             System.out.println("2: Managing Products Using AVL");
             System.out.println("3: Managing Shipments Using BST");
             System.out.println("4: Managing Orders Using Heaps");
-            System.out.println("5:doing the additional order ");
+            System.out.println("5: Reports About Shipments And Products");
             System.out.println("6: Quit");
             x = in.nextInt();
 
