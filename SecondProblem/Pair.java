@@ -1,4 +1,4 @@
-package out.SecondProblem;
+package SecondProblem;
 
 class Pair<U, V> {
     public final U first;

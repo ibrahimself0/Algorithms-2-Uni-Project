@@ -1,4 +1,4 @@
-package out.SecondProblem;
+package SecondProblem;
 
 import java.util.Scanner;
 import java.util.Vector;
